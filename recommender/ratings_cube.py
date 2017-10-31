@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from cubes.tutorial.sql import create_table_from_csv
-from cubes import Workspace
+from cubes import Workspace, PointCut, Cell
 
 
 def create_ratings():
@@ -64,9 +64,14 @@ def execute_aggregations(browser):
 
 def cslice(browser):
     print("Slicing by time")
-    cut = PointCut("time", 5)
-    cell = Cell(cube, cuts)
-    result = browser.aggregate(cell)
+    cut = PointCut("time", [5])
+    cell = Cell(browser.cube, [cut])
+    result = browser.aggregate(cell, drilldown=["item"])
+    print("result")
+    print(result)
+    print(dir(result))
+    print(result.summary)
+    print(result.to_dict())
     for record in result:
         print(record)
 
