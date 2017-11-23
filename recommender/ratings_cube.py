@@ -66,14 +66,20 @@ def cslice(browser):
     print("Slicing by time")
     cut = PointCut("time", [5])
     cell = Cell(browser.cube, [cut])
+    print ("dir cell")
+    print(dir(cell))
+    print(cell)
     result = browser.aggregate(cell, drilldown=["item"])
     print("result")
-    print(result)
-    print(dir(result))
     print(result.summary)
     print(result.to_dict())
     for record in result:
         print(record)
+    print("result cells")
+    print(result.cell)
+    print(browser.facts(cell))
+    for cell in browser.facts(cell):
+        print(cell)
 
 def main():
     browser = create_browser()
