@@ -1,0 +1,11 @@
+Created a server.
+
+Two calls:
+
+Ratings regarding context (field time)
+
+http://localhost:4321/context/5
+
+Number of Ratings regarding context (field time)
+
+http://localhost:4321/context/5/item/60
