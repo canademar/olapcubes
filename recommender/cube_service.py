@@ -102,6 +102,26 @@ class CubeService(object):
         print(result)
         return result
 
+    def item_context_agg(self,item):
+        result = []
+        print("Slicing by item")
+        cut = PointCut("item", [item])
+        cell = Cell(self.browser.cube, [cut])
+        agg = self.browser.aggregate(cell, drilldown=["time"])
+        print("agg")
+        print(agg.summary)
+        print(agg.to_dict())
+        for record in agg:
+            print("Record in agg")
+            print(record)
+            record["sum"] = float(record["sum"])
+            record["average"] = float(record["average"])
+            result.append(record)
+        print("result cells")
+        for cell in self.browser.facts(cell):
+            print(cell)
+        return result
+
 def main():
     cube = CubeService()
     #browser = create_browser()

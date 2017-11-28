@@ -11,19 +11,7 @@
             ]
         },
         {
-         "name":"item",
-         "levels": [
-                {
-                    "name":"genres",
-                    "label":"genres",
-                    "attributes": ["genres", "item_id"]
-                },
-                {
-                    "name":"item_id",
-                    "label":"Item_id",
-                    "attributes": ["item_id", "title"]
-                }
-            ]
+         "name":"item", "attributes": ["item_id", "genres", "title"]
         },
         {"name":"time", "role": "time"}
     ],

@@ -81,10 +81,25 @@ def cslice(browser):
     for cell in browser.facts(cell):
         print(cell)
 
+def item_context_agg(browser, item):
+    print("Slicing by item")
+    cut = PointCut("item", [item])
+    cell = Cell(browser.cube, [cut])
+    result = browser.aggregate(cell, drilldown=["time"])
+    print("result")
+    print(result.summary)
+    print(result.to_dict())
+    for record in result:
+        print(record)
+    print("result cells")
+    for cell in browser.facts(cell):
+        print(cell)
+
 def main():
     browser = create_browser()
     execute_aggregations(browser)
-    cslice(browser)
+    #cslice(browser)
+    item_context_agg(browser, '10')
 
 if __name__== '__main__':
     print("Starting")

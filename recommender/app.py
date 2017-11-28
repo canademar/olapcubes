@@ -24,6 +24,15 @@ def item_in_context(context,item):
     logger.debug("Count of item %s in context %s", (item, context))
     count = dbhelper.item_in_context(item, context)
     return json.dumps({"context":context, "item": item, "count":count})
+
+
+@main.route("/item/<int:item>", methods=["get"])
+def item_context_aggregation(item):
+    logger.debug("item context aggregation ", item)
+    aggregation = cube.item_context_agg(item)
+    logger.debug("\n\n\n\n item agg:%s" % aggregation)
+    print("\n\n\n\n cubeslice:%s" % aggregation)
+    return json.dumps({"item":item, "aggregation":aggregation})
  
  
 def create_app(dataset_path):
